@@ -6,7 +6,7 @@ import java.io.File;
 
 
 @Component
-public class TextFileProcessor implements FileProcessor {
+public class TextProcessor implements FileProcessor {
 
     @Override
     public boolean supports(File file) {
