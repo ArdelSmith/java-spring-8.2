@@ -1,15 +1,12 @@
 package org.example;
 
 import org.example.components.FileProcessor;
+import org.example.components.ImageProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ContextAnnotationAutowireCandidateResolver;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.*;
+
 
 import java.io.File;
 import java.nio.file.Path;
@@ -17,18 +14,19 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-@SpringBootApplication
+@Configuration
+@ComponentScan(basePackageClasses = Main.class,
+        excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
+                pattern = "org\\.example\\.components\\.(Directory|Image).*"))
 public class Main {
 
     @Autowired
     public static Map<String, FileProcessor> fileProcessorsList = new HashMap<>();
 
-    private static ConfigurableApplicationContext app_context;
-
     private static File file;
 
     public static void main(String[] args) {
-        app_context = SpringApplication.run(Main.class, args);
+        ConfigurableApplicationContext app_context = SpringApplication.run(Main.class, args);
         fileProcessorsList = app_context.getBeansOfType(FileProcessor.class);
         if (args.length != 1) {
             System.out.println("Add filename as an argument");
@@ -55,9 +53,6 @@ public class Main {
     }
 
     private static void findSupportableComponents(File file) {
-        fileProcessorsList.stream()
-                .filter(processor -> processor.supports(file))
-                .forEach(processor -> System.out.println(processor.getClass().getSimpleName()));
 
     }
 
