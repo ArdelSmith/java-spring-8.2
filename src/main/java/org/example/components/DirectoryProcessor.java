@@ -16,4 +16,21 @@ public class DirectoryProcessor implements FileProcessor{
     public void process(File file) {
 
     }
+
+    @Override
+    public void provideListOfFunctions(){
+
+    }
+
+    public void showFilesInDir(File file){
+
+    }
+
+    public void countTotalFilesSize(File file){
+
+    }
+
+    public void findFileWithLongestName(File file){
+
+    }
 }

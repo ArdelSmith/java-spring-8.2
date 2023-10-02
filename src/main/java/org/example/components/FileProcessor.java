@@ -8,4 +8,6 @@ import java.io.File;
 public interface FileProcessor {
     boolean supports(File file);
     void process(File file);
+
+    void provideListOfFunctions();
 }
