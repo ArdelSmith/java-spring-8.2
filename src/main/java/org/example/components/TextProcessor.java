@@ -26,7 +26,11 @@ public class TextProcessor implements FileProcessor {
 
     @Override
     public void provideListOfFunctions(){
-
+        StringBuilder sb = new StringBuilder();
+        sb.append("0. Show files in directory\n");
+        sb.append("1. Count total files size in dir\n");
+        sb.append("2. Find file with longest name in dir\n");
+        System.out.println(sb);
     }
 
     //This func counts amount of raws

@@ -15,11 +15,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 @Configuration
 @ComponentScan(basePackageClasses = Main.class,
         excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
-                pattern = "org\\.example\\.components\\.(Music|Image).*"))
+                pattern = "org\\.example\\.components\\.(Directory|Image).*"))
 public class Main {
     public static Map<String, FileProcessor> fileProcessorsList = new HashMap<>();
 
@@ -57,10 +58,10 @@ public class Main {
         fileProcessorsList.forEach((k, v) -> {
             if (v.supports(file)) components.add(v);
         });
-        provideSupportableComponents(components);
+        chooseSupportableComponents(components);
     }
 
-    private static void provideSupportableComponents(List<FileProcessor> components){
+    private static void chooseSupportableComponents(List<FileProcessor> components){
         if (!components.isEmpty()){
             System.out.println("Choose one of the following components with a number:");
             StringBuilder sb = new StringBuilder();
@@ -69,16 +70,15 @@ public class Main {
                 sb.append(String.format(". %s", components.get(i).getClass().getSimpleName()));
                 System.out.println(sb);
             }
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(System.in));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             try{
                 String input = reader.readLine();
-                var component = components.get(Integer.valueOf(input));
-
+                var component = components.get(Integer.parseInt(input));
+                component.process(file);
             }
             catch (Exception e){
                 System.out.println("Wrong value! Repeat!\n");
-                provideSupportableComponents(components);
+                chooseSupportableComponents(components);
             }
         }
         else System.out.println("There is no available components");
