@@ -20,7 +20,7 @@ import java.util.function.Function;
 @Configuration
 @ComponentScan(basePackageClasses = Main.class,
         excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
-                pattern = "org\\.example\\.components\\.(Directory|Image).*"))
+                pattern = "org\\.example\\.components\\.(Music|Image).*"))
 public class Main {
     public static Map<String, FileProcessor> fileProcessorsList = new HashMap<>();
 
