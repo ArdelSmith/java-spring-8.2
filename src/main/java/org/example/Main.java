@@ -6,7 +6,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.*;
 
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import java.util.Map;
 @Configuration
 @ComponentScan(basePackageClasses = Main.class,
         excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
-                pattern = "org\\.example\\.components\\.(Directory|Image).*"))
+                pattern = "org\\.example\\.components\\.(Music|Image).*"))
 public class Main {
     public static Map<String, FileProcessor> fileProcessorsList = new HashMap<>();
 
@@ -55,6 +57,30 @@ public class Main {
         fileProcessorsList.forEach((k, v) -> {
             if (v.supports(file)) components.add(v);
         });
+        provideSupportableComponents(components);
     }
 
+    private static void provideSupportableComponents(List<FileProcessor> components){
+        if (!components.isEmpty()){
+            System.out.println("Choose one of the following components with a number:");
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < components.size(); i++){
+                sb.append(i);
+                sb.append(String.format(". %s", components.get(i).getClass().getSimpleName()));
+                System.out.println(sb);
+            }
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(System.in));
+            try{
+                String input = reader.readLine();
+                var component = components.get(Integer.valueOf(input));
+
+            }
+            catch (Exception e){
+                System.out.println("Wrong value! Repeat!\n");
+                provideSupportableComponents(components);
+            }
+        }
+        else System.out.println("There is no available components");
+    }
 }
