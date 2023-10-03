@@ -11,10 +11,11 @@ public class TextProcessor implements FileProcessor {
 
     @Override
     public boolean supports(File file) {
-        String[] splitted = file.getName().split(".");
+        String fileName = file.getName();
+        String[] splitted = fileName.split("\\.");
         if (splitted.length != 0){
             String extension = splitted[splitted.length-1];
-            return (extension.contains(".txt"));
+            return (extension.contains("txt"));
         }
         return false;
     }
