@@ -16,4 +16,7 @@ public abstract class MusicModule implements FileProcessor {
         }
         return false;
     }
+
+    @Override
+    public abstract void process(File file);
 }

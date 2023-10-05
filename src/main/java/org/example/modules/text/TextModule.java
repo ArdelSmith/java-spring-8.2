@@ -5,12 +5,10 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 
-
 @Component
-public class TextProcessor implements FileProcessor {
-
+public abstract class TextModule implements FileProcessor {
     @Override
-    public boolean supports(File file) {
+    public boolean supports(File file){
         String fileName = file.getName();
         String[] splitted = fileName.split("\\.");
         if (splitted.length != 0){
@@ -21,22 +19,5 @@ public class TextProcessor implements FileProcessor {
     }
 
     @Override
-    public void showFunctionDescription() {
-
-    }
-
-
-    //This func counts amount of raws
-    public void CountRaws(File file){
-
-    }
-    //This func counts amount of diff words
-    public void CountWords(File file){
-
-    }
-
-    //This function counts chars
-    public void CountChars(File file){
-
-    }
+    public abstract void process(File file);
 }

@@ -8,7 +8,8 @@ import java.io.File;
 @Component
 public class ArtistModule extends MusicModule{
 
-    public void showArtistName(File file){
+    @Override
+    public void process(File file){
         try{
             Mp3File mp3file = new Mp3File(file.getAbsolutePath());
             String name = mp3file.getId3v1Tag().getArtist();

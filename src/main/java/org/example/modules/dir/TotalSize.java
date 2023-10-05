@@ -13,7 +13,8 @@ public class TotalSize extends DirModule{
         System.out.println("This");
     }
 
-    public void countTotalFilesSize(File file){
+    @Override
+    public void process(File file){
         File[] files = file.listFiles();
         if (files.length == 0){
             System.out.println("No files in dir");

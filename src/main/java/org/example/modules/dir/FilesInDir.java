@@ -12,7 +12,8 @@ public class FilesInDir extends DirModule{
         System.out.println("This function shows files in dir");
     }
 
-    public void showFilesInDir(File file){
+    @Override
+    public void process(File file){
         File[] files = file.listFiles();
         if (files.length == 0){
             System.out.println("No files in dir");

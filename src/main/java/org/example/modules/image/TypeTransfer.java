@@ -16,11 +16,11 @@ public class TypeTransfer extends ImageModule{
         System.out.println("This function will convert your .png image to .jpeg");
     }
 
-    public void transfer(File file){
+    @Override
+    public void process(File file){
         try{
-            File inputFile = file;
 
-            BufferedImage inputImage = ImageIO.read(inputFile);
+            BufferedImage inputImage = ImageIO.read(file);
 
             Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName("jpg");
             ImageWriter writer = writers.next();

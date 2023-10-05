@@ -14,7 +14,8 @@ public class LongestName extends DirModule{
         System.out.println("This function finds file with longest name in directory");
     }
 
-    public void findFileWithLongestName(File file){
+    @Override
+    public void process(File file){
         File[] files = file.listFiles();
         File f;
         if (files.length != 0) f = files[0];

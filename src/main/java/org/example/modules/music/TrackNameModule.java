@@ -12,7 +12,8 @@ public class TrackNameModule extends MusicModule{
         System.out.println("This function will show trackname");
     }
 
-    public void showTrackName(File file){
+    @Override
+    public void process(File file){
         try{
             Mp3File mp3file = new Mp3File(file.getAbsolutePath());
             String name = mp3file.getId3v1Tag().getTitle();

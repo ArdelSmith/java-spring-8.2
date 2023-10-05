@@ -9,4 +9,6 @@ public interface FileProcessor {
     boolean supports(File file);
 
     void showFunctionDescription();
+
+    void process(File file);
 }

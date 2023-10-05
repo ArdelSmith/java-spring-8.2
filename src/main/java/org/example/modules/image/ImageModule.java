@@ -16,4 +16,7 @@ public abstract class ImageModule implements FileProcessor {
         }
         return false;
     }
+
+    @Override
+    public abstract void process(File file);
 }

@@ -15,7 +15,8 @@ public class EXIF extends ImageModule{
         System.out.println("This function will provide EXIF info");
     }
 
-    public void showEXIF(File file){
+    @Override
+    public void process(File file){
         try{
             Metadata metadata = ImageMetadataReader.readMetadata(file.getAbsoluteFile());
             Iterable<Directory> dirs = metadata.getDirectories();

@@ -14,7 +14,8 @@ public class Size extends ImageModule{
        System.out.println("This function will show size of your image");
     }
 
-    public void showImageSize(File file){
+    @Override
+    public void process(File file){
         try{
             Metadata metadata = ImageMetadataReader.readMetadata(file.getAbsoluteFile());
             Iterable<Directory> dirs = metadata.getDirectories();

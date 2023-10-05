@@ -16,7 +16,8 @@ import java.util.logging.Logger;
 @Component
 public class DurationModule extends MusicModule{
 
-    public void showDuration(File file){
+    @Override
+    public void process(File file){
         Header h = null;
         FileInputStream f = null;
         try {
