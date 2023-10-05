@@ -1,10 +1,9 @@
 package org.example;
 
-import org.example.components.FileProcessor;
+import org.example.modules.FileProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.*;
-
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,12 +14,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
+
 
 @Configuration
-@ComponentScan(basePackageClasses = Main.class,
+@ComponentScan(basePackages = "org.example.modules",
         excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
-                pattern = "org\\.example\\.components\\.(Music|Directory).*"))
+                pattern = "org\\.example\\.modules\\.(music|text).*"))
 public class Main {
     public static Map<String, FileProcessor> fileProcessorsList = new HashMap<>();
 
@@ -74,7 +73,7 @@ public class Main {
             try{
                 String input = reader.readLine();
                 var component = components.get(Integer.parseInt(input));
-                component.process(file);
+                //component.process(file);
             }
             catch (Exception e){
                 System.out.println("Wrong value! Repeat!\n");
