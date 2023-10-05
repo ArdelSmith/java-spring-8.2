@@ -62,18 +62,16 @@ public class Main {
 
     private static void chooseSupportableComponents(List<FileProcessor> components){
         if (!components.isEmpty()){
-            System.out.println("Choose one of the following components with a number:");
-            StringBuilder sb = new StringBuilder();
+            System.out.println("Choose one of the following functions with a number:");
             for (int i = 0; i < components.size(); i++){
-                sb.append(i);
-                sb.append(String.format(". %s", components.get(i).getClass().getSimpleName()));
-                System.out.println(sb);
+                System.out.println(i + String.format(". %s", components.get(i).getClass().getSimpleName()));
+                components.get(i).showFunctionDescription();
             }
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             try{
                 String input = reader.readLine();
                 var component = components.get(Integer.parseInt(input));
-                //component.process(file);
+                component.process(file);
             }
             catch (Exception e){
                 System.out.println("Wrong value! Repeat!\n");
