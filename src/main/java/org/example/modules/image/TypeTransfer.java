@@ -7,6 +7,8 @@ import javax.imageio.stream.ImageOutputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
 
 @Component
@@ -19,27 +21,32 @@ public class TypeTransfer extends ImageModule{
     @Override
     public void process(File file){
         try{
+            Path source = Paths.get(file.getAbsolutePath());
+            Path target = Paths.get(file.getPath() + ".jpg");
 
-            BufferedImage inputImage = ImageIO.read(file);
+            BufferedImage originalImage = ImageIO.read(source.toFile());
 
-            Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName("jpg");
-            ImageWriter writer = writers.next();
+            // jpg needs BufferedImage.TYPE_INT_RGB
+            // png needs BufferedImage.TYPE_INT_ARGB
 
-            File outputFile = new File("output.jpg");
-            ImageOutputStream outputStream = ImageIO.createImageOutputStream(outputFile);
-            writer.setOutput(outputStream);
+            // create a blank, RGB, same width and height
+            BufferedImage newBufferedImage = new BufferedImage(
+                    originalImage.getWidth(),
+                    originalImage.getHeight(),
+                    BufferedImage.TYPE_INT_RGB);
 
-            ImageWriteParam params = writer.getDefaultWriteParam();
-            params.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-            params.setCompressionQuality(0.5f);
+            // draw a white background and puts the originalImage on it.
+            newBufferedImage.createGraphics()
+                    .drawImage(originalImage,
+                            0,
+                            0,
+                            Color.WHITE,
+                            null);
 
-            writer.write(null, new IIOImage(inputImage, null, null), params);
-
-            outputStream.close();
-            writer.dispose();
+            // save an image
+            ImageIO.write(newBufferedImage, "jpg", target.toFile());
         }
         catch (Exception ignore){
-
         }
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 
 @Component
-public class Size extends ImageModule{
+public class Resolution extends ImageModule{
     @Override
     public void showFunctionDescription() {
        System.out.println("This function will show size of your image");
