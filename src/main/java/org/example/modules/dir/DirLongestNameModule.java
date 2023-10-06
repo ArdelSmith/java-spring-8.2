@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 
 @Component
-public class LongestName extends DirModule{
+public class DirLongestNameModule extends DirModule{
 
 
 

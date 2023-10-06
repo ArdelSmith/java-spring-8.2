@@ -5,11 +5,12 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 
 @Component
-public class FilesInDir extends DirModule{
+public class DirTotalSizeModule extends DirModule{
+
 
     @Override
     public void showFunctionDescription() {
-        System.out.println("This function shows files in dir");
+        System.out.println("This");
     }
 
     @Override
@@ -19,9 +20,11 @@ public class FilesInDir extends DirModule{
             System.out.println("No files in dir");
             return;
         }
-        System.out.println("Directory has these files iside:");
-        for (int i = 0; i < files.length; i ++){
-            System.out.println(i + ". " + files[i].getName());
+        long size = 0;
+        for (File value : files) {
+            if (value.isDirectory()) continue;
+            size += value.length();
         }
+        System.out.println("Size of files in bytes in dir is: " + size);
     }
 }

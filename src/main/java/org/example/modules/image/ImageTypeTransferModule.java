@@ -3,16 +3,14 @@ package org.example.modules.image;
 import org.springframework.stereotype.Component;
 
 import javax.imageio.*;
-import javax.imageio.stream.ImageOutputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Iterator;
 
 @Component
-public class TypeTransfer extends ImageModule{
+public class ImageTypeTransferModule extends ImageModule{
     @Override
     public void showFunctionDescription() {
         System.out.println("This function will convert your .png image to .jpeg");

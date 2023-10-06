@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 
 @Component
-public class EXIF extends ImageModule{
+public class ImageEXIFModule extends ImageModule{
     @Override
     public void showFunctionDescription() {
         System.out.println("This function will provide EXIF info");

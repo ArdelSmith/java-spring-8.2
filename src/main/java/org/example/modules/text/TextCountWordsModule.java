@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.util.Scanner;
 
 @Component
-public class CountWords extends TextModule{
+public class TextCountWordsModule extends TextModule{
     @Override
     public void showFunctionDescription() {
         System.out.println("This function will count amount of words in text");

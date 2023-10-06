@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 @Component
-public class CountRaws extends TextModule{
+public class TextCountRawsModule extends TextModule{
     @Override
     public void showFunctionDescription() {
         System.out.println("This function will count amount of raws");

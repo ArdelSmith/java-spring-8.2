@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class CountChars extends TextModule{
+public class TextCountCharsModule extends TextModule{
     @Override
     public void showFunctionDescription() {
         System.out.println("This function will count amount of each char in text");

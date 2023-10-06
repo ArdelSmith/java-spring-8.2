@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Component
-public class DurationModule extends MusicModule{
+public class MusicDurationModule extends MusicModule{
 
     @Override
     public void process(File file){
