@@ -18,8 +18,8 @@ import java.util.Map;
 
 @Configuration
 @ComponentScan(basePackages = "org.example.modules",
-        excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
-                pattern = "org\\.example\\.modules\\.(music|text).*"))
+        includeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
+                pattern = "org\\.example\\.modules\\.(music|dir|text|image).*"))
 public class Main {
     public static Map<String, FileProcessor> fileProcessorsList = new HashMap<>();
 

@@ -15,15 +15,13 @@ public class CountWords extends TextModule{
 
     @Override
     public void process(File file) {
-        try{
-            try(Scanner sc = new Scanner(new FileInputStream(file))){
-                int count=0;
-                while(sc.hasNext()){
-                    sc.next();
-                    count++;
-                }
-                System.out.println("Number of words: " + count);
+        try(Scanner sc = new Scanner(new FileInputStream(file))){
+            int count=0;
+            while(sc.hasNext()){
+                sc.next();
+                count++;
             }
+            System.out.println("Number of words: " + count);
         }
         catch (Exception ignore) {
         }

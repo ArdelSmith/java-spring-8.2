@@ -15,8 +15,8 @@ public class CountRaws extends TextModule{
 
     @Override
     public void process(File file){
-        try{
-            System.out.println(Files.lines(Paths.get(file.getAbsolutePath())));
+        try(var e = Files.lines(Paths.get(file.getAbsolutePath()))){
+            System.out.println(e.count());
         }
         catch (Exception ignore){
 

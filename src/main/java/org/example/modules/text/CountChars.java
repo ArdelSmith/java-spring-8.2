@@ -17,15 +17,14 @@ public class CountChars extends TextModule{
 
     @Override
     public void process(File file) {
-        try{
-            Map<String, Integer> dict = new HashMap<>();
-            BufferedReader reader = new BufferedReader(new FileReader(file.getAbsolutePath()));
+        try(BufferedReader reader = new BufferedReader(new FileReader(file.getAbsolutePath()));){
+            Map<Character, Integer> dict = new HashMap<>();
             String line;
             while ((line = reader.readLine()) != null){
                 for (char c:
                         line.toCharArray()) {
-                    if (dict.containsKey(c)) dict.put(String.valueOf(c), dict.get(c));
-                    else dict.put(String.valueOf(c), 0);
+                    if (dict.containsKey(c)) dict.put(c, dict.get(c) + 1);
+                    else dict.put(c, 1);
                 }
             }
             for (var key:
