@@ -17,7 +17,7 @@ public class TextCountCharsModule extends TextModule{
 
     @Override
     public void process(File file) {
-        try(BufferedReader reader = new BufferedReader(new FileReader(file.getAbsolutePath()));){
+        try(BufferedReader reader = new BufferedReader(new FileReader(file.getAbsolutePath()))){
             Map<Character, Integer> dict = new HashMap<>();
             String line;
             while ((line = reader.readLine()) != null){

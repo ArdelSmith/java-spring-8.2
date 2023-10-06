@@ -46,7 +46,7 @@ public class MusicDurationModule extends MusicModule{
             var res = h.total_ms((int) tn)/1000;
             System.out.println("Duration is: " + (int)res /60 + " minutes and " + (int)res%60 + " seconds");
         }
-        catch (Exception e){
+        catch (Exception ignore){
 
         }
     }

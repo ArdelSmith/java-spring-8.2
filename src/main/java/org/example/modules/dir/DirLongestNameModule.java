@@ -23,8 +23,8 @@ public class DirLongestNameModule extends DirModule{
             System.out.println("No files in dir");
             return;
         }
-        for (int i = 0; i < files.length; i ++){
-            if (files[i].length() > f.length()) f = files[i];
+        for (File value : files) {
+            if (value.length() > f.length()) f = value;
         }
         System.out.println("The longest file in dir is: " + f.getName() + " with size of " + f.length() + " bytes");
     }
